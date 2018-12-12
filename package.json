@@ -1,0 +1,25 @@
+{
+  "name": "nodefun",
+  "version": "1.0.0",
+  "description": "Contains packages used for NodeFun training.",
+  "main": "express.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emielkwakkel/nodefun.git"
+  },
+  "keywords": [
+    "node"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/emielkwakkel/nodefun/issues"
+  },
+  "homepage": "https://github.com/emielkwakkel/nodefun#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
