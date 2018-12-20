@@ -16,34 +16,16 @@ console.log(message);
 var obj = { 'param': 'value', 'number':5 }
 console.log(obj.param + ' / ' + obj.number);
 ```
-
 As you can see, any javascript command can be executed. Now have some fun experimenting, we will discuss afterwards.
 
-## 2. Working with modules
-Create the file `app.js`, add `console.log(module)`
-Run `node app.js`, and check the output.
-
-Create the file `calc.js`
-```javascript
-function sum(a, b) {
-    return a + b;
-}
-
-module.exports.sum = sum;
-
-console.log(module);
+Let's see what you can do with the browsers window and document object!
+``` javascript
+console.log(window, document);
 ```
+Nothing! So what can you actually get out of the node environment?
 
-Modify the app.js
-```javascript
-console.log(module);
-var calc = require('./calc');
-
-var amount = calc.sum(10, 20);
-console.log(amount);
-```
-
-## OS
+## Operating System
+Node is a JavaScript engine within the machine it runs on, so you get access to system resources, like 'os' (Operating System) and 'fs' (File System).
 ```javascript
 const os = require('os');
 
@@ -65,8 +47,57 @@ fs.readdir('./fsadfsad', (error, files) => {
 });
 ```
 
+## Http
+Node.js is ideal for creating simple servers. By default you'll get access to `http`. Let's see how you can create your own localhost server, listening on port `1337`.
+```javascript
+const http = require('http');
+
+http.createServer(function (req, res) {
+  res.writeHead(200, {'Content-Type': 'text/plain'});
+  res.end('Hello World!');
+}).listen(1337);
+
+console.log(`Server running at port 1337`);
+```
+Let's make the script a little bit more agile. The port can be set by default within the machines environment.
+```javascript
+const port = process.env.port || 1337;
+
+console.log(`Server running at port ${port}`);
+```
+With this line we check if the port is set, otherwise use the default value 1337.
+
+## Node built-in modules
+https://www.w3schools.com/nodejs/ref_modules.asp
+
+## 2. Creating modular code
+Create the file `app.js`, add `console.log(module)`
+Run `node app.js`, and check the output.
+
+Create the file `calc.js`
+```javascript
+function sum(a, b) {
+    return a + b;
+}
+```
+
+We have created a function, now let's export the function within the module.
+```javascript
+module.exports.sum = sum;
+console.log(module);
+```
+
+Modify the app.js to require the calc module.
+```javascript
+console.log(module);
+var calc = require('./calc');
+
+var amount = calc.sum(10, 20);
+console.log(amount);
+```
 
 ## 3. Create mock server using Express
+TODO: Add server folder with mocked json files and empty server.js
 Run `npm install express --save` to install the Express package.
 
 Create the file `express.js` and configure the webserver as follows:
@@ -86,3 +117,11 @@ If you open `localhost:3000` in a browser you'll get the message `Cannot GET /`.
 ```javascript
 app.get('/', (req, res) => res.send('Hello World!'))
 ```
+
+## 4. Node Package Manager (NPM)
+Create a new folder and change your terminal to the created directory.
+`mkdir myproject && cd myproject`
+
+Run `npm init` to go through the setup wizard.
+Check the generated package.json.
+Todo: difference dependencies / devDependencies.
